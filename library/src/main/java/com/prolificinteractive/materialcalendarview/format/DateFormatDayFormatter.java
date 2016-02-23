@@ -1,11 +1,12 @@
 package com.prolificinteractive.materialcalendarview.format;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.format.jalali.date.format.SimpleJalaliDateFormat;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
@@ -19,7 +20,7 @@ public class DateFormatDayFormatter implements DayFormatter {
      * Format using a default format
      */
     public DateFormatDayFormatter() {
-        this.dateFormat = new SimpleDateFormat("d", Locale.getDefault());
+        this.dateFormat = new SimpleJalaliDateFormat("d", Locale.getDefault());
     }
 
     /**

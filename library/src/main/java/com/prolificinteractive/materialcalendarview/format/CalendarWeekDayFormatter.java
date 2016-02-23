@@ -1,9 +1,12 @@
 package com.prolificinteractive.materialcalendarview.format;
 
+import android.util.Log;
+
 import com.prolificinteractive.materialcalendarview.CalendarUtils;
 
 import java.util.Calendar;
 import java.util.Locale;
+
 
 /**
  * Use a {@linkplain java.util.Calendar} to get week day labels.
@@ -13,6 +16,7 @@ import java.util.Locale;
 public class CalendarWeekDayFormatter implements WeekDayFormatter {
 
     private final Calendar calendar;
+
 
     /**
      * Format with a specific calendar

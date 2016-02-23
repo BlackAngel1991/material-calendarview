@@ -149,6 +149,9 @@ public class JalaliCalendar extends Calendar {
             14 * ONE_HOUR,    // ZONE_OFFSET
             2 * ONE_HOUR    // DST_OFFSET (double summer time)
     };
+    public static synchronized Calendar getInstance() {
+        return new JalaliCalendar();
+    }
 
     public JalaliCalendar() {
         this(TimeZone.getDefault(), Locale.getDefault());
@@ -172,6 +175,22 @@ public class JalaliCalendar extends Calendar {
         yearMonthDate = gregorianToJalali(yearMonthDate);
         set(yearMonthDate.getYear(), yearMonthDate.getMonth(), yearMonthDate.getDate());
         complete();
+
+    }
+
+    @Override
+    public void setTimeInMillis(long milliseconds) {
+        if (!isTimeSet || !areFieldsSet || time != milliseconds) {
+            time = milliseconds;
+            isTimeSet = true;
+            areFieldsSet = false;
+           Calendar cal=Calendar.getInstance();
+            cal.setTimeInMillis(milliseconds);
+            YearMonthDate yearMonthDate = new YearMonthDate(cal.get(YEAR), cal.get(MONTH), cal.get(DATE));
+            yearMonthDate = gregorianToJalali(yearMonthDate);
+            set(yearMonthDate.getYear(), yearMonthDate.getMonth(), yearMonthDate.getDate());
+            complete();
+        }
 
     }
 

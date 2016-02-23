@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jalalicalendarutil.JalaliCalendar;
 import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
@@ -323,7 +324,7 @@ public class MaterialCalendarView extends ViewGroup {
             );
             if (firstDayOfWeek < 0) {
                 //Allowing use of Calendar.getInstance() here as a performance optimization
-                firstDayOfWeek = Calendar.getInstance().getFirstDayOfWeek();
+                firstDayOfWeek = JalaliCalendar.getInstance().getFirstDayOfWeek();
             }
             setFirstDayOfWeek(firstDayOfWeek);
         } catch (Exception e) {
@@ -1374,7 +1375,7 @@ public class MaterialCalendarView extends ViewGroup {
         int weekCount = calendarMode.visibleWeeksCount;
         boolean isInMonthsMode = calendarMode.equals(CalendarMode.MONTHS);
         if (isInMonthsMode && mDynamicHeightEnabled && adapter != null && pager != null) {
-            Calendar cal = (Calendar) adapter.getItem(pager.getCurrentItem()).getCalendar().clone();
+            Calendar cal = (JalaliCalendar) adapter.getItem(pager.getCurrentItem()).getCalendar().clone();
             cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
             //noinspection ResourceType
             cal.setFirstDayOfWeek(getFirstDayOfWeek());

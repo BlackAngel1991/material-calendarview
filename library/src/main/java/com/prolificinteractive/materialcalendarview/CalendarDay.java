@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -46,7 +47,9 @@ public final class CalendarDay implements Parcelable {
         if (calendar == null) {
             return null;
         }
+        Log.d("log", "Day with JalaliCalendar + 62 :" + calendar.get(Calendar.DAY_OF_MONTH));
         return from(
+
                 CalendarUtils.getYear(calendar),
                 CalendarUtils.getMonth(calendar),
                 CalendarUtils.getDay(calendar)
@@ -160,6 +163,7 @@ public final class CalendarDay implements Parcelable {
     @NonNull
     public Date getDate() {
         if (_date == null) {
+            Log.d("getDate","getDate:"+getCalendar().getTime());
             _date = getCalendar().getTime();
         }
         return _date;

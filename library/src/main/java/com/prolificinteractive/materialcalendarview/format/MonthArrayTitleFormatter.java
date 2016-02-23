@@ -1,8 +1,11 @@
 package com.prolificinteractive.materialcalendarview.format;
 
 import android.text.SpannableStringBuilder;
+import android.util.Log;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+
+import java.util.Locale;
 
 /**
  * Use an array to generate a month/year label
@@ -34,6 +37,6 @@ public class MonthArrayTitleFormatter implements TitleFormatter {
         return new SpannableStringBuilder()
                 .append(monthLabels[day.getMonth()])
                 .append(" ")
-                .append(String.valueOf(day.getYear()));
+                .append(String.format(Locale.getDefault(),"%d",day.getYear()));
     }
 }

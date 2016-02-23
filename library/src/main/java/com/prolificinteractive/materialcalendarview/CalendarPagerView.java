@@ -2,6 +2,7 @@ package com.prolificinteractive.materialcalendarview;
 
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
@@ -76,7 +77,9 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
         //noinspection ResourceType
         tempWorkingCalendar.setFirstDayOfWeek(getFirstDayOfWeek());
         int dow = CalendarUtils.getDayOfWeek(tempWorkingCalendar);
+        Log.d("CalendarPagerView","getDayOfWeek :"+dow);
         int delta = getFirstDayOfWeek() - dow;
+        Log.d("CalendarPagerView","delta :"+delta);
         //If the delta is positive, we want to remove a week
         boolean removeRow = showOtherMonths(showOtherDates) ? delta >= 0 : delta > 0;
         if (removeRow) {

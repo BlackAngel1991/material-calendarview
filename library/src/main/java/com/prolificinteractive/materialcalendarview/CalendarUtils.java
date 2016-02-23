@@ -2,6 +2,7 @@ package com.prolificinteractive.materialcalendarview;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.jalalicalendarutil.JalaliCalendar;
 
@@ -20,6 +21,8 @@ import static java.util.Calendar.YEAR;
  * Utilities for Calendar
  */
 public class CalendarUtils {
+
+    private static final String TAG = CalendarUtils.class.getSimpleName();
 
     /**
      * @param date {@linkplain Date} to pull date information from
@@ -71,18 +74,23 @@ public class CalendarUtils {
     }
 
     public static int getYear(Calendar calendar) {
+        Log.d(TAG, "getYear: "+calendar.get(YEAR));
         return calendar.get(YEAR);
     }
 
     public static int getMonth(Calendar calendar) {
+
+        Log.d(TAG, "getMonth: "+calendar.get(MONTH));
         return calendar.get(MONTH);
     }
 
     public static int getDay(Calendar calendar) {
+        Log.d(TAG, "getDay: "+calendar.get(DATE));
         return calendar.get(DATE);
     }
 
     public static int getDayOfWeek(Calendar calendar) {
+        Log.d(TAG, "getDayOfWeek: "+calendar.get(DAY_OF_WEEK));
         return calendar.get(DAY_OF_WEEK);
     }
 }
