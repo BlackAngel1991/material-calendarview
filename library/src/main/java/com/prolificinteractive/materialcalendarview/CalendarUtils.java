@@ -26,7 +26,13 @@ public class CalendarUtils {
      * @return a new Calendar instance with the date set to the provided date. Time set to zero.
      */
     public static Calendar getInstance(@Nullable Date date) {
-        Calendar calendar = new JalaliCalendar();
+        Calendar calendar;
+        if (Locale.getDefault().getLanguage().equals("fa")) {
+            calendar = new JalaliCalendar();
+        }
+        else {
+            calendar=Calendar.getInstance();
+        }
         if (date != null) {
             calendar.setTime(date);
         }
@@ -39,7 +45,13 @@ public class CalendarUtils {
      */
     @NonNull
     public static Calendar getInstance() {
-        Calendar calendar = new JalaliCalendar();
+         Calendar calendar;
+        if (Locale.getDefault().getLanguage().equals("fa")) {
+            calendar = new JalaliCalendar();
+        }
+        else {
+            calendar=Calendar.getInstance();
+        }
         copyDateTo(calendar, calendar);
         return calendar;
     }

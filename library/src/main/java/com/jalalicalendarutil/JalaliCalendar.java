@@ -149,6 +149,9 @@ public class JalaliCalendar extends Calendar {
             14 * ONE_HOUR,    // ZONE_OFFSET
             2 * ONE_HOUR    // DST_OFFSET (double summer time)
     };
+    public static synchronized Calendar getInstance() {
+        return new JalaliCalendar();
+    }
 
     public JalaliCalendar() {
         this(TimeZone.getDefault(), Locale.getDefault());
@@ -172,6 +175,22 @@ public class JalaliCalendar extends Calendar {
         yearMonthDate = gregorianToJalali(yearMonthDate);
         set(yearMonthDate.getYear(), yearMonthDate.getMonth(), yearMonthDate.getDate());
         complete();
+
+    }
+
+    @Override
+    public void setTimeInMillis(long milliseconds) {
+        if (!isTimeSet || !areFieldsSet || time != milliseconds) {
+            time = milliseconds;
+            isTimeSet = true;
+            areFieldsSet = false;
+           Calendar cal=Calendar.getInstance();
+            cal.setTimeInMillis(milliseconds);
+            YearMonthDate yearMonthDate = new YearMonthDate(cal.get(YEAR), cal.get(MONTH), cal.get(DATE));
+            yearMonthDate = gregorianToJalali(yearMonthDate);
+            set(yearMonthDate.getYear(), yearMonthDate.getMonth(), yearMonthDate.getDate());
+            complete();
+        }
 
     }
 
@@ -551,23 +570,23 @@ public class JalaliCalendar extends Calendar {
             //***
 
             //Day_Of_Week_In_Month
-            if (0 < fields[5] && fields[5] < 8) {
+            if (0 < fields[DAY_OF_MONTH] && fields[DAY_OF_MONTH] < 8) {
                 super.set(DAY_OF_WEEK_IN_MONTH, 1);
             }
 
-            if (7 < fields[5] && fields[5] < 15) {
+            if (7 < fields[DAY_OF_MONTH] && fields[DAY_OF_MONTH] < 15) {
                 super.set(DAY_OF_WEEK_IN_MONTH, 2);
             }
 
-            if (14 < fields[5] && fields[5] < 22) {
+            if (14 < fields[DAY_OF_MONTH] && fields[DAY_OF_MONTH] < 22) {
                 super.set(DAY_OF_WEEK_IN_MONTH, 3);
             }
 
-            if (21 < fields[5] && fields[5] < 29) {
+            if (21 < fields[DAY_OF_MONTH] && fields[DAY_OF_MONTH] < 29) {
                 super.set(DAY_OF_WEEK_IN_MONTH, 4);
             }
 
-            if (28 < fields[5] && fields[5] < 32) {
+            if (28 < fields[DAY_OF_MONTH] && fields[DAY_OF_MONTH] < 32) {
                 super.set(DAY_OF_WEEK_IN_MONTH, 5);
             }
             //***
